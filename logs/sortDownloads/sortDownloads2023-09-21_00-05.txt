@@ -1,0 +1,11 @@
+Started download folder sorting on 2023-09-21 00:05:01
+
+Removing outdated log file => sortDownloads2023-09-20_23-18.txt
+
+Grouping jpg:
+C:/Users/yagni/Downloads/8Cpug.jpg => D:/sorted_downloads/png_jpg/8Cpug.jpg
+
+Grouping unknown:
+C:/Users/yagni/Downloads/Windows Task Scheduler running Python script_ how to prevent taskeng.exe pop-up_ - Stack Overflow.html => D:/sorted_downloads/unknown_extensions/Windows Task Scheduler running Python script_ how to prevent taskeng.exe pop-up_ - Stack Overflow.html
+
+Finished download folder sorting.

@@ -78,7 +78,7 @@ def remove_html_files():
     list_of_files = os.listdir(sortfolder)
 
     # in minutes
-    max_existance_time = 10
+    max_existance_time = 3
 
     full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
     html_files = list(filter(lambda file: pathlib.Path(file).suffix == ".html", full_path))
@@ -248,7 +248,7 @@ def group_type(extension=None):
     list_of_files = os.listdir(sortfolder)
 
     # in minutes
-    max_existance_time = 0
+    max_existance_time = 10
 
     sorted_downloads_folder = r"D:\sorted_downloads"
 
