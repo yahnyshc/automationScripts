@@ -20,8 +20,8 @@ log = None
 
 testing = False
 
-#sortfolder = r"C:\Users\yagni\Downloads"
-sortfolder = r"D:\automationScriptsTestFiles"
+sortfolder = r"C:\Users\yagni\Downloads"
+
 def pure_posix_path(p):
     return pathlib.PureWindowsPath(p).as_posix()
 def pure_windows_path(p):
@@ -53,6 +53,7 @@ def move(src_file, dest_folder):
         # copy and then move to recycle bin
         shutil.copy(src_file, os.path.join(dest_folder, filename))
         to_recycle_bin(src_file)
+
 def remove_outdated_logs():
     list_of_files = os.listdir(logsdir)
 
@@ -145,7 +146,7 @@ def sort_work_timetables():
         # if file is older than x minutes
         if minutes_since_creation >= max_existance_time:
             printed_something = True
-            log.write(f"Removing duplicate timetable:\n")
+            log.write(f"Moving timetable to recycle bin:\n")
             if os.path.isfile(file):
                 log.write(pure_posix_path(file) + "\n")
                 to_recycle_bin(pure_windows_path(file))
@@ -154,9 +155,137 @@ def sort_work_timetables():
 
     if printed_something:
         log.write("\n")
-        
+
 def sort_work_invoices():
-    pass
+    list_of_files = os.listdir(sortfolder)
+
+    # in minutes
+    max_existance_time = 45
+
+    invoices_folder = r'D:\work_invoices'
+
+    full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
+    timetables = list(filter(lambda file: re.search("invoice.*\d+\.docx$", ntpath.basename(file)), full_path))
+    printed_something = False
+    for file in timetables:
+        minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
+        # if file is older than x minutes
+        if minutes_since_creation >= max_existance_time:
+            month = re.search("_(.*)\d+\.docx", ntpath.basename(file)).group(1)
+            destination = os.path.join(invoices_folder, month)
+            log.write(f'Moving invoice:\n')
+            printed_something = True
+            final_destination = os.path.join(destination, ntpath.basename(file))
+            log.write(f'{pure_posix_path(file)} => {pure_posix_path(final_destination)}\n')
+
+            move(file, destination)
+
+    if printed_something:
+        log.write("\n")
+
+    # manage rest of the timetables
+    rest_of_invoices = list(filter(lambda file: re.search("invoice.*\)\.docx$", ntpath.basename(file)), full_path))
+    printed_something = False
+    for file in rest_of_invoices:
+        minutes_since_creation = int((time.time() - os.path.getmtime(file))/60)
+        # if file is older than x minutes
+        if minutes_since_creation >= max_existance_time:
+            log.write(f"Moving invoice to recycle bin:\n")
+            printed_something = True
+            if os.path.isfile(file):
+                log.write(pure_posix_path(file) + "\n")
+                to_recycle_bin(pure_windows_path(file))
+            else:
+                log.write(f"Error::invoice is not file: " + file + "\n")
+
+    if printed_something:
+        log.write("\n")
+def sort_sql_files():
+    list_of_files = os.listdir(sortfolder)
+
+    # in minutes
+    max_existance_time = 20
+
+    folder = r"D:\work\database"
+
+    full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
+    sql_files = list(filter(lambda file: pathlib.Path(file).suffix == ".sql", full_path))
+    printed_something = False
+    for file in sql_files:
+        minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
+        # if file is older than x minutes
+        if minutes_since_creation >= max_existance_time:
+            log.write(f'Moving sql into work folder:\n')
+            printed_something = True
+            final_destination = os.path.join(folder, ntpath.basename(file))
+            log.write(f'{pure_posix_path(file)} => {pure_posix_path(final_destination)}\n')
+
+            move(file, folder)
+
+    if printed_something:
+        log.write("\n")
+
+    folder = r"D:\work\database\zipped"
+
+    sql_gz_files = list(filter(lambda file: re.search(".*\.sql\.gz$", ntpath.basename(file)), full_path))
+    printed_something = False
+    for file in sql_gz_files:
+        minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
+        # if file is older than x minutes
+        if minutes_since_creation >= max_existance_time:
+            log.write(f'Moving sql archive into work folder:\n')
+            printed_something = True
+            final_destination = os.path.join(folder, ntpath.basename(file))
+            log.write(f'{pure_posix_path(file)} => {pure_posix_path(final_destination)}\n')
+
+            move(file, folder)
+
+    if printed_something:
+        log.write("\n")
+
+
+def group_type(extension=None):
+    list_of_files = os.listdir(sortfolder)
+
+    # in minutes
+    max_existance_time = 0
+
+    sorted_downloads_folder = r"D:\sorted_downloads"
+
+    if extension is None:
+        sorted_downloads_folder = os.path.join(sorted_downloads_folder, "unknown_extensions")
+    elif extension == "png" or extension == "jpg":
+        sorted_downloads_folder = os.path.join(sorted_downloads_folder, "png_jpg")
+    elif extension == "gz" or extension == "zip":
+        sorted_downloads_folder = os.path.join(sorted_downloads_folder, "zip_gz")
+    elif extension == "exe" or extension == "msi":
+        sorted_downloads_folder = os.path.join(sorted_downloads_folder, "exe_msi")
+    else:
+        sorted_downloads_folder = os.path.join(sorted_downloads_folder, extension)
+
+    full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
+
+    if extension is not None:
+        files = list(filter(lambda file: pathlib.Path(file).suffix == "."+extension, full_path))
+    else:
+        files = list(filter(lambda file: os.path.isfile(file), full_path))
+        extension = "unknown"
+
+    printed_something = False
+    for file in files:
+        minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
+        # if file is older than x minutes
+        if minutes_since_creation >= max_existance_time:
+            log.write(f'Grouping {extension}:\n')
+            printed_something = True
+            final_destination = os.path.join(sorted_downloads_folder, ntpath.basename(file))
+            log.write(f'{pure_posix_path(file)} => {pure_posix_path(final_destination)}\n')
+
+            move(file, sorted_downloads_folder)
+
+    if printed_something:
+        log.write("\n")
+
 
 if __name__ == '__main__':
     log = open(logname, 'w', encoding='utf-8')
@@ -168,6 +297,23 @@ if __name__ == '__main__':
     remove_html_files()
 
     sort_work_timetables()
+
+    sort_work_invoices()
+
+    sort_sql_files()
+
+    group_type("gz")
+    group_type("zip")
+    group_type("exe")
+    group_type("msi")
+    group_type("pdf")
+    group_type("docx")
+    group_type("txt")
+    group_type("jpg")
+    group_type("png")
+
+    # rest of the files
+    group_type()
 
     log.write(f'Finished download folder sorting.\n')
     log.close()
