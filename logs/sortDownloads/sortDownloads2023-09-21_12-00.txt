@@ -1,0 +1,9 @@
+Started download folder sorting on 2023-09-21 12:00:01
+
+Removing outdated log file => sortDownloads2023-09-21_00-02.txt
+
+Removing outdated (56 minutes old) HTML file and its folder:
+C:/Users/yagni/Downloads/How to turn off OneDrive - IONOS.html
+C:/Users/yagni/Downloads/How to turn off OneDrive - IONOS_files
+
+Finished download folder sorting.

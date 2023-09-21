@@ -1,0 +1,19 @@
+Started download folder sorting on 2023-09-21 14:52:47
+
+Removing outdated log file => sortDownloads2023-09-21_00-05.txt
+
+Moving timetable:
+C:/Users/yagni/Downloads/Maksym_20230904.xlsx => D:/work_timetables/2023/September/Maksym_20230904.xlsx
+Moving timetable:
+C:/Users/yagni/Downloads/Maksym_20230911.xlsx => D:/work_timetables/2023/September/Maksym_20230911.xlsx
+
+Grouping pdf:
+C:/Users/yagni/Downloads/1690806158_E-ticket_passenger_9b0de00261b225d1cefce24851a57b2c.pdf => D:/sorted_downloads/pdf/1690806158_E-ticket_passenger_9b0de00261b225d1cefce24851a57b2c.pdf
+Grouping pdf:
+C:/Users/yagni/Downloads/1690808408_E-ticket_passenger_and_1_more_7ee20f630d588516a3190bc2b6d6ad04.pdf => D:/sorted_downloads/pdf/1690808408_E-ticket_passenger_and_1_more_7ee20f630d588516a3190bc2b6d6ad04.pdf
+Grouping pdf:
+C:/Users/yagni/Downloads/1690809267_E-ticket_passenger_and_1_more_6643ae6fe64013ecbb390e9ba6f9238a.pdf => D:/sorted_downloads/pdf/1690809267_E-ticket_passenger_and_1_more_6643ae6fe64013ecbb390e9ba6f9238a.pdf
+Grouping pdf:
+C:/Users/yagni/Downloads/boarding-pass (2).pdf => D:/sorted_downloads/pdf/boarding-pass (2).pdf
+
+Finished download folder sorting.

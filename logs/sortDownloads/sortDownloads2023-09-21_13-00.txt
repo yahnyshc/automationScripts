@@ -1,0 +1,5 @@
+ Started download folder sorting on 2023-09-21 13:00:01
+
+Removing outdated log file => sortDownloads2023-09-21_00-03.txt
+
+Finished download folder sorting.
