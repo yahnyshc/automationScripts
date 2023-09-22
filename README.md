@@ -10,7 +10,12 @@ Downloads folder before the script is run:
 After:
 
 ![image](https://github.com/yahnyshc/automationScripts/assets/143096926/2cf75fb2-946b-4fb3-8722-38a7c45e060b)
+
+
 ![image](https://github.com/yahnyshc/automationScripts/assets/143096926/db6864b2-2d4a-4512-934e-e5de343dcae9)
+
+
+![image](https://github.com/yahnyshc/automationScripts/assets/143096926/31acb87a-995c-44fe-9d8d-bcdda693bcd3)
 
 
 
