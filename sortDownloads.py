@@ -237,7 +237,7 @@ if __name__ == '__main__':
 
     log.write(f'Started download folder sorting on {d}\n\n')
 
-    cleaner = dirclean(testing=False, log=log, logsdir=logs_dir)
+    cleaner = dirclean(testing=False, log=log, logs_dir=logs_dir)
 
     cleaner.remove_outdated_logs(8)
 
