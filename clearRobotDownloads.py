@@ -8,7 +8,7 @@ from modules.dirclean import dirclean
 d = datetime.datetime.now().replace(microsecond=0)
 
 scriptname = os.path.splitext(ntpath.basename(__file__))[0]
-logsdir = os.path.join(r"D:\automationScripts\logs", scriptname)
+logsdir = os.path.join(r"/logs", scriptname)
 if not os.path.exists(logsdir):
     os.mkdir(logsdir)
 
@@ -22,7 +22,7 @@ sortfolders = [r"C:\Documents\Download\webrobot",
 cleaner = None
 def remove_html_files():
     # in hours
-    max_existence_time = 72
+    min_existence_time = 72
 
     for sortfolder in sortfolders:
         list_of_files = os.listdir(sortfolder)
@@ -34,7 +34,7 @@ def remove_html_files():
                 continue
             minutes_since_creation = int((time.time() - os.path.getmtime(dir))/3600)
             # if file is older than x hours
-            if minutes_since_creation >= max_existence_time:
+            if minutes_since_creation >= min_existence_time:
                 log.write(f"Removing outdated ({minutes_since_creation} hours old) robot downloads folder:\n")
                 printed_something = True
 

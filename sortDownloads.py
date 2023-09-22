@@ -3,38 +3,37 @@ import time
 import os
 import re
 import pathlib
-import calendar
 import ntpath
+import calendar
 
 from modules.dirclean import dirclean
 
-d = datetime.datetime.now().replace(microsecond=0)
+script_name = os.path.splitext(ntpath.basename(__file__))[0]
+logs_dir = os.path.join(r"/logs", script_name)
 
-scriptname = os.path.splitext(ntpath.basename(__file__))[0]
-logsdir = os.path.join(r"D:\automationScripts\logs", scriptname)
-if not os.path.exists(logsdir):
-    os.mkdir(logsdir)
+def start_log(d, logs_dir, script_name):
+    if not os.path.exists(logs_dir):
+        os.makedirs(logs_dir)
+    log_name = os.path.join(logs_dir, script_name + d.strftime("%Y-%m-%d_%H-%M") + '.txt')
+    return open(log_name, 'w', encoding='utf-8')
 
-logname = os.path.join(logsdir, scriptname + d.strftime("%Y-%m-%d_%H-%M") + '.txt')
 log = None
-
-sortfolder = r"C:\Users\yagni\Downloads"
-
 cleaner = None
 
+downloads_folder = r"C:\Users\yagni\Downloads"
 def remove_html_files():
-    list_of_files = os.listdir(sortfolder)
+    list_of_files = os.listdir(downloads_folder)
 
     # in minutes
-    max_existance_time = 3
+    min_existence_time = 20
 
-    full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
+    full_path = [(downloads_folder + r'/{0}'.format(x)) for x in list_of_files]
     html_files = list(filter(lambda file: pathlib.Path(file).suffix == ".html", full_path))
     printed_something = False
     for file in html_files:
         minutes_since_creation = int((time.time() - os.path.getmtime(file))/60)
         # if file is older than x minutes
-        if minutes_since_creation >= max_existance_time:
+        if minutes_since_creation >= min_existence_time:
             html_file_folder = os.path.splitext(file)[0] + "_files"
 
             log.write(f"Removing outdated ({minutes_since_creation} minutes old) HTML file and its folder:\n")
@@ -49,16 +48,11 @@ def remove_html_files():
     if printed_something:
         log.write("\n")
 
-def sort_work_timetables():
-    list_of_files = os.listdir(sortfolder)
+def sort_work_timetables(min_existence_time = 45):
+    timetables_folder = r'D:\work_timetables'
 
-    # in minutes
-    max_existance_time = 45
-
-    timetabes_folder = r'D:\work_timetables'
-
-    full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
-    timetables = list(filter(lambda file: re.search("Maksym.*\d\.xlsx$", ntpath.basename(file)), full_path))
+    timetables = list(filter(lambda file: re.search("Maksym.*\d\.xlsx$", file), os.listdir(downloads_folder)))
+    timetables = [(downloads_folder + r'/{0}'.format(x)) for x in timetables]
     printed_something = False
     for file in timetables:
         printed_something = True
@@ -72,8 +66,8 @@ def sort_work_timetables():
         else:
             minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
             # if file is older than x minutes
-            if minutes_since_creation >= max_existance_time:
-                destination_year = os.path.join(timetabes_folder, str(day.year))
+            if minutes_since_creation >= min_existence_time:
+                destination_year = os.path.join(timetables_folder, str(day.year))
                 destination_month = os.path.join(destination_year, calendar.month_name[int(day.month)])
 
                 log.write(f'Moving timetable:\n')
@@ -86,12 +80,13 @@ def sort_work_timetables():
         log.write("\n")
 
     # manage rest of the timetables
-    rest_of_timetables = list(filter(lambda file: re.search("Maksym.*\)\.xlsx$", ntpath.basename(file)), full_path))
+    rest_of_timetables = list(filter(lambda file: re.search("Maksym.*\)\.xlsx$", file), os.listdir(downloads_folder)))
+    rest_of_timetables = [(downloads_folder + r'/{0}'.format(x)) for x in rest_of_timetables]
     printed_something = False
     for file in rest_of_timetables:
         minutes_since_creation = int((time.time() - os.path.getmtime(file))/60)
         # if file is older than x minutes
-        if minutes_since_creation >= max_existance_time:
+        if minutes_since_creation >= min_existence_time:
             printed_something = True
             log.write(f"Moving timetable to recycle bin:\n")
             if os.path.isfile(file):
@@ -102,22 +97,21 @@ def sort_work_timetables():
 
     if printed_something:
         log.write("\n")
-
 def sort_work_invoices():
-    list_of_files = os.listdir(sortfolder)
+    list_of_files = os.listdir(downloads_folder)
 
     # in minutes
-    max_existance_time = 45
+    min_existence_time = 45
 
     invoices_folder = r'D:\work_invoices'
 
-    full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
+    full_path = [(downloads_folder + r'/{0}'.format(x)) for x in list_of_files]
     timetables = list(filter(lambda file: re.search("invoice.*\d+\.docx$", ntpath.basename(file)), full_path))
     printed_something = False
     for file in timetables:
         minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
         # if file is older than x minutes
-        if minutes_since_creation >= max_existance_time:
+        if minutes_since_creation >= min_existence_time:
             month = re.search("_(.*)\d+\.docx", ntpath.basename(file)).group(1)
             destination = os.path.join(invoices_folder, month)
             log.write(f'Moving invoice:\n')
@@ -136,7 +130,7 @@ def sort_work_invoices():
     for file in rest_of_invoices:
         minutes_since_creation = int((time.time() - os.path.getmtime(file))/60)
         # if file is older than x minutes
-        if minutes_since_creation >= max_existance_time:
+        if minutes_since_creation >= min_existence_time:
             log.write(f"Moving invoice to recycle bin:\n")
             printed_something = True
             if os.path.isfile(file):
@@ -148,20 +142,20 @@ def sort_work_invoices():
     if printed_something:
         log.write("\n")
 def sort_sql_files():
-    list_of_files = os.listdir(sortfolder)
+    list_of_files = os.listdir(downloads_folder)
 
     # in minutes
-    max_existance_time = 20
+    min_existence_time = 20
 
     folder = r"D:\work\database"
 
-    full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
+    full_path = [(downloads_folder + r'/{0}'.format(x)) for x in list_of_files]
     sql_files = list(filter(lambda file: pathlib.Path(file).suffix == ".sql", full_path))
     printed_something = False
     for file in sql_files:
         minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
         # if file is older than x minutes
-        if minutes_since_creation >= max_existance_time:
+        if minutes_since_creation >= min_existence_time:
             log.write(f'Moving sql into work folder:\n')
             printed_something = True
             final_destination = os.path.join(folder, ntpath.basename(file))
@@ -179,7 +173,7 @@ def sort_sql_files():
     for file in sql_gz_files:
         minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
         # if file is older than x minutes
-        if minutes_since_creation >= max_existance_time:
+        if minutes_since_creation >= min_existence_time:
             log.write(f'Moving sql archive into work folder:\n')
             printed_something = True
             final_destination = os.path.join(folder, ntpath.basename(file))
@@ -192,10 +186,10 @@ def sort_sql_files():
 
 
 def group_type(extension=None):
-    list_of_files = os.listdir(sortfolder)
+    list_of_files = os.listdir(downloads_folder)
 
     # in minutes
-    max_existance_time = 10
+    min_existence_time = 10
 
     sorted_downloads_folder = r"D:\sorted_downloads"
 
@@ -210,7 +204,7 @@ def group_type(extension=None):
     else:
         sorted_downloads_folder = os.path.join(sorted_downloads_folder, extension)
 
-    full_path = [(sortfolder + r'/{0}'.format(x)) for x in list_of_files]
+    full_path = [(downloads_folder + r'/{0}'.format(x)) for x in list_of_files]
 
     if extension is not None:
         files = list(filter(lambda file: pathlib.Path(file).suffix == "."+extension, full_path))
@@ -222,7 +216,7 @@ def group_type(extension=None):
     for file in files:
         minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
         # if file is older than x minutes
-        if minutes_since_creation >= max_existance_time:
+        if minutes_since_creation >= min_existence_time:
             log.write(f'Grouping {extension}:\n')
             printed_something = True
             final_destination = os.path.join(sorted_downloads_folder, ntpath.basename(file))
@@ -235,11 +229,13 @@ def group_type(extension=None):
 
 
 if __name__ == '__main__':
-    log = open(logname, 'w', encoding='utf-8')
+    d = datetime.datetime.now().replace(microsecond=0)
+
+    log = start_log(d=d, logs_dir=logs_dir, script_name=script_name)
 
     log.write(f'Started download folder sorting on {d}\n\n')
 
-    cleaner = dirclean(testing=False, log=log, logsdir=logsdir)
+    cleaner = dirclean(testing=False, log=log, logsdir=logs_dir)
 
     cleaner.remove_outdated_logs(8)
 

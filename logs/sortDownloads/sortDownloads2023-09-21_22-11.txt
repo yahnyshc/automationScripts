@@ -1,0 +1,8 @@
+Started download folder sorting on 2023-09-21 22:11:30
+
+Removing outdated log file => sortDownloads2023-09-21_20-38.txt
+
+Moving timetable:
+C:/Users/yagni/Downloads/Maksym_20230918.xlsx => D:/work_timetables/2023/September/Maksym_20230918.xlsx
+
+Finished download folder sorting.
