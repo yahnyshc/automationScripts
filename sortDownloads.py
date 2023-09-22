@@ -9,13 +9,14 @@ import calendar
 from modules.dirclean import dirclean
 
 script_name = os.path.splitext(ntpath.basename(__file__))[0]
-logs_dir = os.path.join(r"/logs", script_name)
+logs_dir = f'D:\\automationScripts\\logs\\{script_name}'
 
 def start_log(d, logs_dir, script_name):
     if not os.path.exists(logs_dir):
         os.makedirs(logs_dir)
     log_name = os.path.join(logs_dir, script_name + d.strftime("%Y-%m-%d_%H-%M") + '.txt')
     return open(log_name, 'w', encoding='utf-8')
+
 
 log = None
 cleaner = None
@@ -47,6 +48,7 @@ def remove_html_files():
 
     if printed_something:
         log.write("\n")
+
 
 def sort_work_timetables(min_existence_time = 45):
     timetables_folder = r'D:\work_timetables'

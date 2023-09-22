@@ -7,12 +7,13 @@ from modules.dirclean import dirclean
 
 d = datetime.datetime.now().replace(microsecond=0)
 
-scriptname = os.path.splitext(ntpath.basename(__file__))[0]
-logsdir = os.path.join(r"/logs", scriptname)
-if not os.path.exists(logsdir):
-    os.mkdir(logsdir)
+script_name = os.path.splitext(ntpath.basename(__file__))[0]
+logs_dir = f'D:\\automationScripts\\logs\\{script_name}'
 
-logname = os.path.join(logsdir, scriptname + d.strftime("%Y-%m-%d_%H-%M") + '.txt')
+if not os.path.exists(logs_dir):
+    os.mkdir(logs_dir)
+
+logname = os.path.join(logs_dir, script_name + d.strftime("%Y-%m-%d_%H-%M") + '.txt')
 log = None
 
 sortfolders = [r"C:\Documents\Download\webrobot",
@@ -49,8 +50,11 @@ if __name__ == "__main__":
 
     log.write(f'Started robot\'s download folder sorting on {d}\n\n')
 
-    cleaner = dirclean(testing=False, log=log, logsdir=logsdir)
+    cleaner = dirclean(testing=False, log=log, logs_dir=logs_dir)
 
     cleaner.remove_outdated_logs(4)
 
     remove_html_files()
+
+    log.write(f'Finished robot\'s download folder sorting.\n')
+    log.close()

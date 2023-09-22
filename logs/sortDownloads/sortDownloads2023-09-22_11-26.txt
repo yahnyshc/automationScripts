@@ -1,0 +1,10 @@
+Started download folder sorting on 2023-09-22 11:26:24
+
+Removing outdated log file => sortDownloads2023-09-21_22-32.txt
+
+Grouping docx:
+C:/Users/yagni/Downloads/Cover Letter Maksym Yahnyshchak (2).docx => D:/sorted_downloads/docx/Cover Letter Maksym Yahnyshchak (2).docx
+Grouping docx:
+C:/Users/yagni/Downloads/Cover Letter Maksym Yahnyshchak (3).docx => D:/sorted_downloads/docx/Cover Letter Maksym Yahnyshchak (3).docx
+
+Finished download folder sorting.

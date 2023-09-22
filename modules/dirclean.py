@@ -5,10 +5,10 @@ import shutil
 import ntpath
 
 class dirclean:
-    def __init__(self, testing, log, logsdir):
+    def __init__(self, testing, log, logs_dir):
         self.testing = testing
         self.log = log
-        self.logsdir = logsdir
+        self.logs_dir = logs_dir
 
     def setTesting(self, testing):
         self.testing = testing
@@ -48,11 +48,11 @@ class dirclean:
             self.to_recycle_bin(src_file)
 
     def remove_outdated_logs(self, max_logs_amount = 8):
-        list_of_files = os.listdir(self.logsdir)
+        list_of_files = os.listdir(self.logs_dir)
 
         printed_something = False
         while len(list_of_files) > max_logs_amount:
-            full_path = [self.logsdir + r'/{0}'.format(x) for x in list_of_files]
+            full_path = [self.logs_dir + r'/{0}'.format(x) for x in list_of_files]
             oldest_file = min(full_path, key=os.path.getctime)
             oldest_file_name = ntpath.basename(oldest_file)
 

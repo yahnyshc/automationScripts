@@ -1,8 +1,0 @@
-Started download folder sorting on 2023-09-21 22:32:22
-
-Removing outdated log file => sortDownloads2023-09-21_21-05.txt
-
-Grouping png:
-C:/Users/yagni/Downloads/pound_icon.png => D:/sorted_downloads/png_jpg/pound_icon.png
-
-Finished download folder sorting.
