@@ -21,7 +21,7 @@ def start_log(d, logs_dir, script_name):
 log = None
 cleaner = None
 
-downloads_folder = r"C:\Users\yagni\Downloads"
+downloads_folder = r"C:\Users\maks\Downloads"
 def remove_html_files():
     list_of_files = os.listdir(downloads_folder)
 
@@ -194,9 +194,10 @@ def group_type(extension=None):
     min_existence_time = 10
 
     sorted_downloads_folder = r"D:\sorted_downloads"
-
+    ignored_extentions = []
     if extension is None:
         sorted_downloads_folder = os.path.join(sorted_downloads_folder, "unknown_extensions")
+        ignored_extentions = [".crdownload"]
     elif extension == "png" or extension == "jpg":
         sorted_downloads_folder = os.path.join(sorted_downloads_folder, "png_jpg")
     elif extension == "gz" or extension == "zip":
@@ -218,7 +219,7 @@ def group_type(extension=None):
     for file in files:
         minutes_since_creation = int((time.time() - os.path.getmtime(file)) / 60)
         # if file is older than x minutes
-        if minutes_since_creation >= min_existence_time:
+        if minutes_since_creation >= min_existence_time and pathlib.Path(file).suffix not in ignored_extentions:
             log.write(f'Grouping {extension}:\n')
             printed_something = True
             final_destination = os.path.join(sorted_downloads_folder, ntpath.basename(file))

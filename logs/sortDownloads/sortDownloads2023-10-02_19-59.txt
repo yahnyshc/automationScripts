@@ -1,0 +1,70 @@
+Started download folder sorting on 2023-10-02 19:59:20
+
+Removing outdated log file => sortDownloads2023-09-21_23-00.txt
+Removing outdated log file => sortDownloads2023-09-22_00-00.txt
+Removing outdated log file => sortDownloads2023-09-22_01-09.txt
+
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230417.xlsx => D:/work_timetables/2023/April/Maksym_20230417.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230424.xlsx => D:/work_timetables/2023/April/Maksym_20230424.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230501.xlsx => D:/work_timetables/2023/May/Maksym_20230501.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230508.xlsx => D:/work_timetables/2023/May/Maksym_20230508.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230515.xlsx => D:/work_timetables/2023/May/Maksym_20230515.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230522.xlsx => D:/work_timetables/2023/May/Maksym_20230522.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230529.xlsx => D:/work_timetables/2023/May/Maksym_20230529.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230605.xlsx => D:/work_timetables/2023/June/Maksym_20230605.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230612.xlsx => D:/work_timetables/2023/June/Maksym_20230612.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230904.xlsx => D:/work_timetables/2023/September/Maksym_20230904.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230911.xlsx => D:/work_timetables/2023/September/Maksym_20230911.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230918.xlsx => D:/work_timetables/2023/September/Maksym_20230918.xlsx
+Moving timetable:
+C:/Users/maks/Downloads/Maksym_20230925.xlsx => D:/work_timetables/2023/September/Maksym_20230925.xlsx
+
+Moving timetable to recycle bin:
+C:/Users/maks/Downloads/Maksym_20230522 (1).xlsx
+
+Moving invoice:
+C:/Users/maks/Downloads/invoice_jun6.docx => D:/work_invoices/jun/invoice_jun6.docx
+Moving invoice:
+C:/Users/maks/Downloads/invoice_may2.docx => D:/work_invoices/may/invoice_may2.docx
+
+Grouping zip:
+C:/Users/maks/Downloads/scc150_template_week24.zip => D:/sorted_downloads/zip_gz/scc150_template_week24.zip
+
+Grouping exe:
+C:/Users/maks/Downloads/ccsetup611.exe => D:/sorted_downloads/exe_msi/ccsetup611.exe
+Grouping exe:
+C:/Users/maks/Downloads/pycharm-community-2023.2.1.exe => D:/sorted_downloads/exe_msi/pycharm-community-2023.2.1.exe
+Grouping exe:
+C:/Users/maks/Downloads/pycharm-professional-2023.1.2.exe => D:/sorted_downloads/exe_msi/pycharm-professional-2023.1.2.exe
+Grouping exe:
+C:/Users/maks/Downloads/python-3.11.3-amd64.exe => D:/sorted_downloads/exe_msi/python-3.11.3-amd64.exe
+Grouping exe:
+C:/Users/maks/Downloads/python-3.11.6-amd64.exe => D:/sorted_downloads/exe_msi/python-3.11.6-amd64.exe
+Grouping exe:
+C:/Users/maks/Downloads/SpotifySetup.exe => D:/sorted_downloads/exe_msi/SpotifySetup.exe
+Grouping exe:
+C:/Users/maks/Downloads/TeamViewer_Setup_x64.exe => D:/sorted_downloads/exe_msi/TeamViewer_Setup_x64.exe
+Grouping exe:
+C:/Users/maks/Downloads/VSCodeUserSetup-x64-1.77.3.exe => D:/sorted_downloads/exe_msi/VSCodeUserSetup-x64-1.77.3.exe
+
+Grouping pdf:
+C:/Users/maks/Downloads/label_999872.pdf => D:/sorted_downloads/pdf/label_999872.pdf
+Grouping pdf:
+C:/Users/maks/Downloads/Maksym_Yahnyshchak_CV[1].pdf => D:/sorted_downloads/pdf/Maksym_Yahnyshchak_CV[1].pdf
+
+Grouping unknown:
+C:/Users/maks/Downloads/desktop.ini => D:/sorted_downloads/unknown_extensions/desktop.ini
+
+Finished download folder sorting.
