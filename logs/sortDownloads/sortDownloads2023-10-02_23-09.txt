@@ -1,0 +1,6 @@
+Started download folder sorting on 2023-10-02 23:09:54
+
+Grouping unknown:
+C:/Users/maks/Downloads/Unconfirmed 928395.crdownload => D:/sorted_downloads/unknown_extensions/Unconfirmed 928395.crdownload
+
+Finished download folder sorting.
