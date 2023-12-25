@@ -5,6 +5,7 @@ import re
 import pathlib
 import ntpath
 import calendar
+import getpass
 
 from modules.dirclean import dirclean
 
@@ -21,7 +22,7 @@ def start_log(d, logs_dir, script_name):
 log = None
 cleaner = None
 
-downloads_folder = r"C:\Users\maks\Downloads"
+downloads_folder = r"C:\Users\\"+getpass.getuser()+"\Downloads"
 def remove_html_files():
     list_of_files = os.listdir(downloads_folder)
 
