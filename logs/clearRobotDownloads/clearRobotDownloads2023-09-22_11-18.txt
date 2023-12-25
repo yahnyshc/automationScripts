@@ -1,4 +1,0 @@
-Started robot's download folder sorting on 2023-09-22 11:18:18
-
-Removing outdated log file => clearRobotDownloads2023-09-21_15-34.txt
-
